@@ -2,3 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+    body{
+        @apply bg-black
+
+    }
+}
+@layer components{
+    .hoverEffect{
+        @apply hover:bg-[#181818] rounded-full cursor-pointer transition duration-300
+    }
+}
