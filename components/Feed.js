@@ -13,7 +13,7 @@ const Feed = () => {
         (snapshot) => {
             setPosts(snapshot.docs)
         }
-    ), [db]);
+    ), []);
 
     console.log(posts);
     return (

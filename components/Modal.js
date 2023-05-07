@@ -11,6 +11,7 @@ import Moment from 'react-moment'
 import { addDoc, collection, serverTimestamp } from 'firebase/firestore'
 import { db } from '../firebase'
 import { useRouter } from 'next/router'
+import Image from 'next/image'
 
 const Modal = () => {
 
@@ -55,7 +56,11 @@ const Modal = () => {
                 <div className='relative mt-8 grid grid-cols-[48px,1fr] gap-4'>
 
                     <div>
-                        <img className='rounded-full' src={post?.userImg} alt="" />
+                        <Image src={post?.userImg}
+                            alt="modalImg"
+                            width={50}
+                            height={50}
+                            className='rounded-full' />
                     </div>
 
                     <div>
@@ -69,9 +74,12 @@ const Modal = () => {
                             {post?.text}
                         </p>
 
-                        <img src={post?.image}
-                            className='mt-2 max-h-[250px] rounded-[15px] object-cover'
+                        <Image src={post?.image}
                             alt="PostImg"
+                            width={50}
+                            height={50}
+                            className='mt-2 max-h-[250px] rounded-[15px] object-cover'
+
                         />
 
                         <p className='mt-4 text-gray-500'>
@@ -82,7 +90,11 @@ const Modal = () => {
                     </div>
 
                     <div className='mt-4'>
-                        <img className='rounded-full' src={session?.user?.image} alt="" />
+                        <Image src={session?.user?.image}
+                            width={50}
+                            height={50}
+                            alt="userImg"
+                            className='rounded-full' />
                     </div>
 
                     <div className='mt-4'>

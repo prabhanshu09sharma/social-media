@@ -10,7 +10,11 @@ const TrendingList = () => {
             </div>
 
             <div>
-                <Image className='rounded-[20px]' src="" height="120px" width="120px" />
+                <Image src="/salman.webp"
+                    height={75}
+                    width={50}
+                    alt='SujjestionImg'
+                    className=' h-12 w-14 rounded-[20px]' />
             </div>
         </div>
     )

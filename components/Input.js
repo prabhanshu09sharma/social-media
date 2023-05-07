@@ -12,7 +12,7 @@ import Picker from '@emoji-mart/react'
 import { addDoc, collection, doc, serverTimestamp, updateDoc } from 'firebase/firestore'
 import { db, storage } from '../firebase'
 import { getDownloadUrl, ref, uploadString } from 'firebase/storage'
-import { unstable_getServerSession } from 'next-auth';
+import Image from 'next/image';
 
 const Input = () => {
     const { data: session } = useSession();
@@ -72,7 +72,10 @@ const Input = () => {
         <div className={`mt-4 px-4 ${loading && "opacity-60"}`}>
             <div className='grid grid-cols-[48px,1fr] gap-4'>
                 <div>
-                    <img src={session?.user?.image} alt="image"
+                    <Image src={session?.user?.image}
+                        alt="image"
+                        width={50}
+                        height={12}
                         className='h-12 w-12  rounded-full object-contain '
                     />
                 </div>
@@ -88,7 +91,10 @@ const Input = () => {
                                 left-1 cursor-pointer' onClick={() => setSelectedFile(null)}>
                                 <AiOutlineClose className='text-white h-5' />
                             </div>
-                            <img src={selectedFile} alt="fileImage"
+                            <Image src={selectedFile}
+                                width={50}
+                                height={50}
+                                alt="fileImage"
                                 className='rounded-2xl max-h-80 object-contain' />
                         </div>
                     )}

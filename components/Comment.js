@@ -4,14 +4,18 @@ import { AiOutlineHeart, AiFillHeart, AiOutlineShareAlt } from "react-icons/ai"
 import { HiOutlineSwitchHorizontal } from "react-icons/hi"
 import { BsBarChart, BsTrash, BsChatDots } from "react-icons/bs"
 import Moment from "react-moment";
+import Image from "next/image";
 
 function Comment({ comment }) {
     return (
         <div className="p-3 flex cursor-pointer border-b border-gray-700">
-            <img
+            <Image
                 src={comment?.userImg}
-                alt=""
-                className="h-11 w-11 rounded-full mr-4"
+                alt="userImg"
+                width={50}
+                height={50}
+                className=" h-11 w-11 rounded-full mr-4"
+
             />
             <div className="flex flex-col space-y-2 w-full">
                 <div className="flex justify-between">

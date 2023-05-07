@@ -9,6 +9,7 @@ import { useSession } from 'next-auth/react';
 import { collection, deleteDoc, doc, onSnapshot, orderBy, query, setDoc } from 'firebase/firestore'
 import { db } from "../firebase"
 import { AiFillHeart, AiOutlineHeart, AiOutlineShareAlt } from 'react-icons/ai';
+import Image from 'next/image';
 
 
 const Post = ({ id, post }) => {
@@ -29,7 +30,7 @@ const Post = ({ id, post }) => {
                 ),
                 (snapshot) => setComments(snapshot.docs)
             ),
-        [db, id]
+        [id]
     )
 
     useEffect(
@@ -37,13 +38,13 @@ const Post = ({ id, post }) => {
             onSnapshot(collection(db, "posts", id, "likes"), (snapshot) =>
                 setLikes(snapshot.docs)
             ),
-        [db, id]
+        [id]
     )
 
     useEffect(() =>
         setLiked(
             likes.findIndex((like) => like.id === session?.user?.uid) !== -1
-        ), [likes]
+        ), [likes, session?.user?.uid]
     )
 
     const likePost = async () => {
@@ -72,8 +73,8 @@ const Post = ({ id, post }) => {
             onClick={() => router.push(`/${id}`)}>
             <div className='grid grid-cols-[48px,1fr] gap-4'>
                 <div>
-                    <img src={post?.userImg} alt="PostImg"
-                        className='h-12 w-12 rounded-full object-cover' />
+                    <Image src={post?.userImg} alt="PostImg" width={48} height={48}
+                        className=' rounded-full object-cover' />
                 </div>
                 <div>
                     <div className='block sm:flex gap-1'>
@@ -86,8 +87,8 @@ const Post = ({ id, post }) => {
                         </div>
                     </div>
                     <p>{post?.text}</p>
-                    <img className='max-h-[450px] object-cover rounded-[20px] mt-2'
-                        src={post?.image} alt="PostImg" />
+                    <Image className=' object-cover rounded-[20px] mt-2'
+                        src={post?.image} alt="PostImg" width={50} height={50} />
 
                     <div className='flex justify-between text-[20px] mt-4 w-[80%]'>
                         <div className='flex gap-1 items-center'>
